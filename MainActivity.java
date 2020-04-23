@@ -1,5 +1,3 @@
-git remote add origin https://github.com/GCMW20/Polkku.git
-git push -u origin master
 package gachon.mp2020.polkku;
 
 import androidx.appcompat.app.AppCompatActivity;
