@@ -14,19 +14,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button=(Button)findViewById(R.id.button);
-        button.setOnClickListener(new Button.OnClickListener(){
+        Button btn_start=(Button)findViewById(R.id.btn_start);
+        btn_start.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivity(intent);
-            }
-        });
-
-        Button button2 = (Button)findViewById(R.id.button2);
-        button2.setOnClickListener(new Button.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent = new Intent(getApplicationContext(),Checkphoto.class);
                 startActivity(intent);
             }
         });
