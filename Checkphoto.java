@@ -1,104 +1,73 @@
-package gachon.mp2020.polkku;
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checkphoto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe5b2 "
+    android:orientation="vertical">
 
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+    <ImageView
+        android:id="@+id/frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/frame"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginLeft="69dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="69dp"
+        android:layout_marginBottom="139dp"
+        android:background="@drawable/black"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-import java.io.InputStream;
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="110dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:layout_marginBottom="71dp"
+        android:background="#3871a6"
+        android:text="CAMERA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-public class Checkphoto extends AppCompatActivity {
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="110dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="71dp"
+        android:background="#3871a6"
+        android:text="GALLERY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame" />
 
-    ImageView imageview;
-
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.checkphoto);
-
-        imageview = findViewById(R.id.imageView);
-
-        Button btn_gallery = findViewById(R.id.button2);
-        Button btn_camera = findViewById(R.id.button1);
-
-        btn_gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
-
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,101);
-            }
-
-        });
-
-    }
-
-    public void openGallery(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-
-        startActivityForResult(intent, 101);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 101) {
-            if (resultCode == RESULT_OK) {
-                Uri fileUri = data.getData();
-
-                ContentResolver resolver = getContentResolver();
-
-                try {
-                    InputStream instream = resolver.openInputStream(fileUri);
-                    Bitmap bitmap = BitmapFactory.decodeStream(instream);
-                    imageview.setImageBitmap(bitmap);
-
-                    instream.close();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-
-        if(resultCode==1){
-            if (resultCode == RESULT_OK) {
-                Uri fileUri = data.getData();
-
-                ContentResolver resolver = getContentResolver();
-
-                try {
-                    InputStream instream = resolver.openInputStream(fileUri);
-                    Bitmap bitmap = BitmapFactory.decodeStream(instream);
-                    imageview.setImageBitmap(bitmap);
-
-                    instream.close();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-
-    }
-
-}
+</androidx.constraintlayout.widget.ConstraintLayout>
