@@ -13,15 +13,15 @@
         android:id="@+id/textview"
         android:text="POLKKU"
         android:textSize="60dp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="200dp"/>
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:background="#3871a6"
         android:text="START"/>
-
 
 </LinearLayout>
