@@ -17,9 +17,10 @@
         android:layout_height="200dp"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#3871a6"
         android:text="START"/>
 
 
