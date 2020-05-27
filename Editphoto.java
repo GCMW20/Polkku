@@ -1,4 +1,4 @@
-package gachon.mp2020.polkku2;
+package gachon.mp2020.polkku;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,13 +7,13 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Drawphoto extends AppCompatActivity {
+public class Editphoto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editphoto);
 
-        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+        ImageView imageView = findViewById(R.id.imageView);
 
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
