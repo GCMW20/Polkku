@@ -36,15 +36,16 @@ import java.util.Date;
 
 public class Checkphoto extends AppCompatActivity implements AutoPermissionsListener{
 
-    ImageView imageview
+    ImageView imageview;
+    ImageView imageview2;
     File file;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checkphoto);
 
         imageview = findViewById(R.id.imageView);
+        imageview2 = findViewById(R.id.imageView2);
 
         Button btn_gallery = findViewById(R.id.button2);
         Button btn_camera = findViewById(R.id.button1);
@@ -61,8 +62,7 @@ public class Checkphoto extends AppCompatActivity implements AutoPermissionsList
 
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,101);
+                openCamera();
             }
         });
 
@@ -103,7 +103,6 @@ public class Checkphoto extends AppCompatActivity implements AutoPermissionsList
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent,201);
-
     }
     
     public File createFile(){
@@ -121,7 +120,6 @@ public class Checkphoto extends AppCompatActivity implements AutoPermissionsList
         if (requestCode == 101) {
             if (resultCode == RESULT_OK) {
                 Uri fileUri = data.getData();
-
                 ContentResolver resolver = getContentResolver();
 
                 try {
@@ -129,7 +127,9 @@ public class Checkphoto extends AppCompatActivity implements AutoPermissionsList
                     Bitmap bitmap = BitmapFactory.decodeStream(instream);
                     imageview.setImageBitmap(bitmap);
                     instream.close();
-                } catch (Exception e) {
+                    setVisible();
+                } 
+                catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -140,9 +140,15 @@ public class Checkphoto extends AppCompatActivity implements AutoPermissionsList
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 4;
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+            
             imageview.setImageBitmap(bitmap);
+            setVisible();
         }
 
+    }
+    
+    public void setVisible(){
+        imageview2.setVisibility(View.VISIBLE);
     }
     
     @Override
@@ -154,7 +160,4 @@ public class Checkphoto extends AppCompatActivity implements AutoPermissionsList
     public void onGranted(int i, String[] strings) {
 
     }
-
 }
-
-
