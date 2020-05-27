@@ -1,4 +1,4 @@
-package gachon.mp2020.polkku2;
+package gachon.mp2020.polkku;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -16,16 +17,28 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-import gachon.mp2020.polkku2.R;
+import gachon.mp2020.polkku.R;
 
-public class Checkphoto extends AppCompatActivity {
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-    ImageView imageview;
+public class Checkphoto extends AppCompatActivity implements AutoPermissionsListener{
+
+    ImageView imageview
+    File file;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +69,22 @@ public class Checkphoto extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(),Drawphoto.class);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                Bitmap bitmap = ((BitmapDrawable)imageview.getDrawable()).getBitmap();
+                float scale = (float) (1024/(float)bitmap.getWidth());
+                int image_w = (int)(bitmap.getWidth() * scale);
+                int image_h = (int)(bitmap.getHeight() * scale);
+                Bitmap resize = Bitmap.createScaledBitmap(bitmap,image_w,image_h,true);
+                resize.compress(Bitmap.CompressFormat.JPEG,100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                Intent intent = new Intent(getApplicationContext(),Editphoto.class);
+
+                intent.putExtra("image", byteArray);
                 startActivity(intent);
             }
         });
+        AutoPermissions.Companion.loadAllPermissions(this, 201);
     }
 
     public void openGallery(){
@@ -69,6 +94,26 @@ public class Checkphoto extends AppCompatActivity {
 
         startActivityForResult(intent, 101);
     }
+    
+     public void openCamera(){
+        if(file == null){
+            file = createFile();
+        }
+        Uri fileUri = FileProvider.getUriForFile(this, "gachon.mp2020.polkku.fileprovider", file);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent,201);
+
+    }
+    
+    public File createFile(){
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String filename = "capture"+timeStamp;
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File outFile = new File(storageDir, filename);
+        return outFile;
+    }
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -83,9 +128,7 @@ public class Checkphoto extends AppCompatActivity {
                     InputStream instream = resolver.openInputStream(fileUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(instream);
                     imageview.setImageBitmap(bitmap);
-
                     instream.close();
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -93,25 +136,22 @@ public class Checkphoto extends AppCompatActivity {
             }
         }
 
-        if(resultCode==1){
-            if (resultCode == RESULT_OK) {
-                Uri fileUri = data.getData();
-
-                ContentResolver resolver = getContentResolver();
-
-                try {
-                    InputStream instream = resolver.openInputStream(fileUri);
-                    Bitmap bitmap = BitmapFactory.decodeStream(instream);
-                    imageview.setImageBitmap(bitmap);
-
-                    instream.close();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
+        if(requestCode == 201 && resultCode == RESULT_OK) {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+            imageview.setImageBitmap(bitmap);
         }
+
+    }
+    
+    @Override
+    public void onDenied(int i, String[] strings) {
+
+    }
+
+    @Override
+    public void onGranted(int i, String[] strings) {
 
     }
 
