@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffe5b2 "
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:fontFamily="@font/blackhansansregular"
+                android:background="@drawable/button_design"
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="5dp"
+                android:layout_alignParentLeft="true"
+                android:text="BACK"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:fontFamily="@font/blackhansansregular"
+                android:background="@drawable/button_design"
+                android:id="@+id/buttonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="4dp"
+                android:layout_alignParentRight="true"
+                android:text="NEXT" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/editImage"
+            android:layout_width="312dp"
+            android:layout_height="438dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/black" />
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:fontFamily="@font/hangeulnuri"
+                android:background="@drawable/button_design"
+                android:id="@+id/colorPickerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="색상선택" />
+
+            <Button
+                android:fontFamily="@font/hangeulnuri"
+                android:background="@drawable/button_design"
+                android:id="@+id/thickPickerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="굵기입력" />
+            <Button
+                android:fontFamily="@font/hangeulnuri"
+                android:background="@drawable/button_design"
+                android:id="@+id/eraser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="지우개" />
+            <Button
+                android:fontFamily="@font/hangeulnuri"
+                android:background="@drawable/button_design"
+                android:id="@+id/SetStickerBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스티커" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/stickerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:fontFamily="@font/hangeulnuri"
+                android:id="@+id/textStickerBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="글자 스티커" />
+
+            <EditText
+                android:fontFamily="@font/hangeulnuri"
+                android:id="@+id/textStickerEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textStickerBtn"
+                android:textColor="@color/black"
+                android:ems="10"
+                android:hint="텍스트를 입력하세요"
+                android:textColorHint="@color/black"
+                android:inputType="textPersonName" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
