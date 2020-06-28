@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffe5b2 "
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+            <Button
+                android:fontFamily="@font/blackhansansregular"
+                android:background="@drawable/button_design"
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="5dp"
+                android:layout_alignParentLeft="true"
+                android:text="BACK"
+                android:layout_alignParentStart="true"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:fontFamily="@font/blackhansansregular"
+                android:background="@drawable/button_design"
+                android:id="@+id/buttonSave"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="4dp"
+                android:layout_alignParentRight="true"
+                android:text="SAVE" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/saveImage"
+            android:layout_width="312dp"
+            android:layout_height="438dp"
+            android:layout_gravity="center"
+            android:background="@drawable/black"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:fontFamily="@font/hangeulnuri"
+                android:background="@drawable/button_design"
+                android:id="@+id/buttonlink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="공유하기" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
