@@ -36,7 +36,7 @@ public class SavePhoto extends AppCompatActivity {
 
         imageView = findViewById(R.id.saveImage);
         back=findViewById(R.id.buttonBack);
-        save=findViewById(R.id.buttonSave); // save부분과 next부분이 굳이 따로 있을 이유는?
+        save=findViewById(R.id.buttonSave);
 
         byte[] byteArray = getIntent().getByteArrayExtra("final_image");
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
