@@ -30,15 +30,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginRight="5dp" />
 
-            <Button
-                android:fontFamily="@font/blackhansansregular"
-                android:background="@drawable/button_design"
-                android:id="@+id/buttonSave"
-                android:layout_width="wrap_content"
-                android:layout_height="37dp"
-                android:layout_marginTop="4dp"
-                android:layout_alignParentRight="true"
-                android:text="SAVE" />
         </RelativeLayout>
 
         <LinearLayout
@@ -55,13 +46,13 @@
             android:layout_marginTop="30dp">
 
             <Button
-                android:fontFamily="@font/hangeulnuri"
+                android:fontFamily="@font/blackhansansregular"
                 android:background="@drawable/button_design"
-                android:id="@+id/buttonlink"
+                android:id="@+id/buttonSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="공유하기" />
+                android:text="SAVE" />
 
         </LinearLayout>
 
